@@ -43,13 +43,16 @@ class GameMechanics:                                    #Game mechanics class (C
     def cls():                                          #Clear screen func
         os.system('cls' if os.name=='nt' else 'clear')
 
-    def randomize_npc(self):
+    def randomize_npc(self):                            #This func will randomize the QTY and type of NPC in each room
         print("Do something here")
 
-    def do_battle(self):
+    def do_battle(self):                                #This func will calculate battle stats and apply HP, damage, subtract health, etc.
         print("Do something here")
 
-    def enter_room(self):
+    def enter_room(self):                               #This func will be used when enterring a room
+        print("Do something here")
+
+    def inspect_item(self, item):                       #This func will inspect item
         print("Do something here")
 
 class Player:
@@ -61,6 +64,7 @@ class Player:
         self.level = 0                                  #Player game level
         self.armor = 0                                  #Player armor
         self.inventory = list(range(10))                #Player inventory
+        self.location = None
 
     def get_name(self):
         return self.name
@@ -103,6 +107,12 @@ class Player:
 
     def sub_inventory(self, item):
         self.inventory.remove(item)
+
+    def get_location(self):
+        return self.location
+
+    def set_location(self, location):
+        self.location = location
 
 class Weapon:
     def __init__(self, name, hp, reqskill, damage):
@@ -205,6 +215,7 @@ class Room:
 if __name__ == "__main__":
     GameMechanics.cls()
     player1 = Player()
+    #Beyond this line still sucks
     armor = GameMechanics.get_armor()
     armor = Armor()
     rooms = GameMechanics.get_rooms()
