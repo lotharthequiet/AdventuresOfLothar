@@ -15,29 +15,29 @@ class Log:
 class GameMechanics:
     def get_armor(self):
         try:
-            with open('armor.csv', newline='') as f:
+            with open('armor.dat', newline='') as f:
                 reader = csv.reader(f)
                 armor = list(reader)
                 return armor
         except Exception as e:
-            Log.Logger.error("Unable to open armor.csv.", e)
+            Log.Logger.error("Unable to open armor.dat.", e)
     def get_rooms(self):
         try: 
-            with open('rooms.csv', newline='') as f:
+            with open('rooms.dat', newline='') as f:
                 reader = csv.reader(f)
                 rooms = list(reader)
                 return rooms
         except Exception as e:
-            Log.Logger.error("Unable to open rooms.csv.", e)
+            Log.Logger.error("Unable to open rooms.dat.", e)
             
     def get_weapons(self):
         try:
-            with open('weapons.csv', newline='') as f:
+            with open('weapons.dat', newline='') as f:
                 reader = csv.reader(f)
                 weapons = list(reader)
                 return weapons
         except Exception as e:
-            Log.Logger.error("Unable to open weapons.csv.", e)
+            Log.Logger.error("Unable to open weapons.dat.", e)
 
     def cls():
         os.system('cls' if os.name=='nt' else 'clear')
@@ -50,7 +50,7 @@ class GameMechanics:
 
 class Player:
     def __init__(self, name):
-        self.name = name
+        self.name = "Lothar"
         self.health = 100
         self.skills = 0
         self.weapon = None
@@ -101,11 +101,11 @@ class Player:
         self.inventory.remove(item)
 
 class Weapon:
-    def __init__(self, name, damage, reqskill, hp):
-        self.name = name
-        self.damage = damage
-        self.reqskill = reqskill
-        self.hp = hp
+    def __init__(self, name, hp, reqskill, damage):
+        self.name = name                            #Name of weapon
+        self.hp = hp                                #Hit points delivered from weapon
+        self.reqskill = reqskill                    #Required skill level
+        self.hp = damage                            #Damage limit of weapon
 
     def get_name(self):
         return self.name
@@ -132,10 +132,11 @@ class Weapon:
         self.name = self.hp + hp
 
 class Armor:
-    def __init__(self, name, protection, reqskill):
-        self.name = name
-        self.protection = protection
-        self.reqskill = reqskill
+    def __init__(self, name, hp, reqskill, damage):
+        self.name = name                                #Armor name
+        self.hp = hp                                    #Armor protection
+        self.reqskill = reqskill                        #Required skill level
+        self.damage = damage                            #Damage limit of weapon
 
     def get_name(self):
         return self.name
@@ -183,5 +184,10 @@ class Room:
 
 if __name__ == "__main__":
     GameMechanics.cls()
+    player1 = Player
     print("Welcome to the Adventures of Lothar.")
     print("A text-based adventure game.")
+    print("")
+    print("")
+    print("")
+    print("You are a peasant named " + player1.get_name() + ". This is your adventure.")
