@@ -109,7 +109,7 @@ class Weapon:
         self.name = name                            #Name of weapon
         self.hp = hp                                #Hit points delivered from weapon
         self.reqskill = reqskill                    #Required skill level
-        self.hp = damage                            #Damage limit of weapon
+        self.damage = damage                            #Damage limit of weapon
 
     def get_name(self):
         return self.name
