@@ -3,17 +3,17 @@ import csv
 import logging
 import os
 
-class Log:
+class Log:                                              #Logging class
     Logger = logging.getLogger(__name__)
     Logger.setLevel(logging.DEBUG)
     Loggerfmt = logging.Formatter('%(asctime)s:%(levelname)s:%(message)s')
-    #Logh = logging.FileHandler('LinuxSystemToolbox.log')
+    #Logh = logging.FileHandler('game.log')
     Logh = logging.StreamHandler()
     Logh.setFormatter(Loggerfmt)
     Logger.addHandler(Logh)
 
-class GameMechanics:
-    def get_armor(self):
+class GameMechanics:                                    #Game mechanics class (Contains all mechanisms for game) 
+    def get_armor(self):                                #Get armor.dat file
         try:
             with open('armor.dat', newline='') as f:
                 reader = csv.reader(f)
@@ -21,7 +21,8 @@ class GameMechanics:
                 return armor
         except Exception as e:
             Log.Logger.error("Unable to open armor.dat.", e)
-    def get_rooms(self):
+    
+    def get_rooms(self):                                #Get rooms.dat file
         try: 
             with open('rooms.dat', newline='') as f:
                 reader = csv.reader(f)
@@ -30,7 +31,7 @@ class GameMechanics:
         except Exception as e:
             Log.Logger.error("Unable to open rooms.dat.", e)
             
-    def get_weapons(self):
+    def get_weapons(self):                              #Get weapons.dat file
         try:
             with open('weapons.dat', newline='') as f:
                 reader = csv.reader(f)
@@ -39,24 +40,27 @@ class GameMechanics:
         except Exception as e:
             Log.Logger.error("Unable to open weapons.dat.", e)
 
-    def cls():
+    def cls():                                          #Clear screen func
         os.system('cls' if os.name=='nt' else 'clear')
 
-    def start_game(self):
-        self.cls()
-        print("Welcome to the Adventures of Lothar.")
-        print("A text-based adventure game.")
+    def randomize_npc(self):
+        print("Do something here")
 
+    def do_battle(self):
+        print("Do something here")
+
+    def enter_room(self):
+        print("Do something here")
 
 class Player:
-    def __init__(self, name):
-        self.name = "Lothar"
-        self.health = 100
-        self.skills = 0
-        self.weapon = None
-        self.level = 0
-        self.armor = 0
-        self.inventory = list(range(10))
+    def __init__(self):
+        self.name = "Lothar"                            #Player Name
+        self.health = 100                               #Player max health
+        self.skills = 0                                 #Player skill level
+        self.weapon = None                              #Player Weapon
+        self.level = 0                                  #Player game level
+        self.armor = 0                                  #Player armor
+        self.inventory = list(range(10))                #Player inventory
 
     def get_name(self):
         return self.name
@@ -141,22 +145,38 @@ class Armor:
     def get_name(self):
         return self.name
 
+    def set_name(self, name):
+        self.name = name
+
     def get_protection(self):
-        return self.protection
+        return self.hp
+
+    def set_protection(self, hp):
+        self.hp = hp
 
     def get_reqskill(self):
         return self.reqskill
 
+    def set_reqskill(self, reqskill):
+        self.reqskill = reqskill
+
+    def get_damage(self):
+        return self.damage
+
+    def set_damage(self, damage):
+        self.damage = damage
+
 class Room:
     def __init__(self, name, greeting, item, info, mapN, mapE, mapS, mapW):
-        self.name = name
-        self.greeting = greeting
-        self.item = item
-        self.info = info
-        self.mapN = mapN
-        self.mapE = mapE
-        self.mapS = mapS
-        self.mapW = mapW
+        self.name = name                                #Room name
+        self.greeting = greeting                        #Room greeting
+        self.item = list(range(4))                      #Room item
+        self.info = info                                #Room info
+        self.mapN = mapN                                #Room to north of current room
+        self.mapE = mapE                                #Room to east of current room
+        self.mapS = mapS                                #Room to south of current room
+        self.mapW = mapW                                #Room to west of current room
+        self.npc = list(range(3))                       #Room NPC inventory
     
     def get_name(self):
         return self.name
@@ -184,10 +204,19 @@ class Room:
 
 if __name__ == "__main__":
     GameMechanics.cls()
-    player1 = Player
+    player1 = Player()
+    armor = GameMechanics.get_armor()
+    armor = Armor()
+    rooms = GameMechanics.get_rooms()
+    rooms = Room()
+    weapons = GameMechanics.get_weapons()
+    weapons = Weapon()
     print("Welcome to the Adventures of Lothar.")
     print("A text-based adventure game.")
     print("")
     print("")
     print("")
-    print("You are a peasant named " + player1.get_name() + ". This is your adventure.")
+    print("You are a peasant. Your name is:")
+    #print(player1.get_name())
+
+    
