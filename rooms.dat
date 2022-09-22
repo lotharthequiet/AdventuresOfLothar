@@ -1,2 +1,9 @@
-Entryway,Welcome to the Entryway! We hope you enjoy your quest.,key,In the entryway you see a door. You walk up next to the door and there is a key hiding behind a picture. There is a rabid dog growling at you as you grab the key. You must either enter the door or fight the dog. What is your choice?
-Foyer,You are now in the Foyer.,,There are three doors. One located in front of you. The other two are on each side of you. Which door do you open?
+Entryway,Welcome to the Entryway,There are two doors. One door is ahead of you. The other door is to your right.,Study,Dining Room,,
+Dining Room,Welcome to the Dining Room,There are three doors. One door is ahead of you. One door is behind you. The other door is to your left.,Laboratory,Kitchen,,Entryway 
+Kitchen,Welcome to the Kitchen,
+Study,Welcome to the Study,
+Laboratory,Welcome to the Laboratory,
+Office,Welcome to the Office,
+Dungeon,Welcome to the Dungeon,
+Greenhouse,Welcome to the Greenhouse,
+King's Chambers,Welcome to the King's Chambers,

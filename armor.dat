@@ -1,6 +1,6 @@
-Leather Armor,5,0
-Chainmail Armor,15,0
-Iron Armor,20,10
-Steel Armor,25,10
-Gold Armor,30,20
-Obsidian Armor,50,25
+Leather Armor,5,0,15
+Chainmail Armor,15,0,25
+Iron Armor,20,10,40
+Steel Armor,25,10,50
+Gold Armor,30,20,40
+Obsidian Armor,50,25,65

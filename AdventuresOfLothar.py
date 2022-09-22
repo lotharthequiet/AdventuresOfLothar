@@ -13,21 +13,33 @@ class Log:                                              #Logging class
     Logger.addHandler(Logh)
 
 class GameMechanics:                                    #Game mechanics class (Contains all mechanisms for game) 
+    version = "0.01a"
+    Armor = []
+    NPC = []
+    Rooms = []
+    Weapons = []
+
     def get_armor(self):                                #Get armor.dat file
         try:
             with open('armor.dat', newline='') as f:
                 reader = csv.reader(f)
-                armor = list(reader)
-                return armor
+                GameMechanics.Armor = list(reader)
         except Exception as e:
             Log.Logger.error("Unable to open armor.dat.", e)
     
+    def get_npc(self):                                  #Get NPCs
+        try:
+            with open('npc.dat', newline='') as f:
+                reader = csv.reader(f)
+                GameMechanics.NPC = list(reader)
+        except Exception as e:
+            Log.logger.error("Unable to open npc.dat.", e)
+
     def get_rooms(self):                                #Get rooms.dat file
         try: 
             with open('rooms.dat', newline='') as f:
                 reader = csv.reader(f)
-                rooms = list(reader)
-                return rooms
+                GameMechanics.Rooms = list(reader)
         except Exception as e:
             Log.Logger.error("Unable to open rooms.dat.", e)
             
@@ -35,8 +47,7 @@ class GameMechanics:                                    #Game mechanics class (C
         try:
             with open('weapons.dat', newline='') as f:
                 reader = csv.reader(f)
-                weapons = list(reader)
-                return weapons
+                GameMechanics.Weapons = list(reader)
         except Exception as e:
             Log.Logger.error("Unable to open weapons.dat.", e)
 
@@ -177,7 +188,7 @@ class Armor:
         self.damage = damage
 
 class Room:
-    def __init__(self, name, greeting, item, info, mapN, mapE, mapS, mapW):
+    def __init__(self, name, greeting, info, mapN, mapE, mapS, mapW):
         self.name = name                                #Room name
         self.greeting = greeting                        #Room greeting
         self.item = list(range(4))                      #Room item
@@ -227,7 +238,7 @@ if __name__ == "__main__":
     print("")
     print("")
     print("")
-    print("You are a peasant. Your name is:")
+    print("You are a peasant. Your name is:", player1.name)
     #print(player1.get_name())
 
     
