@@ -19,7 +19,7 @@ class GameMechanics:                                    #Game mechanics class (C
     Rooms = []
     Weapons = []
 
-    def get_armor(self):                                #Get armor.dat file
+    def get_armor():                                #Get armor.dat file
         try:
             with open('armor.dat', newline='') as f:
                 reader = csv.reader(f)
@@ -27,7 +27,7 @@ class GameMechanics:                                    #Game mechanics class (C
         except Exception as e:
             Log.Logger.error("Unable to open armor.dat.", e)
     
-    def get_npc(self):                                  #Get NPCs
+    def get_npc():                                  #Get NPCs
         try:
             with open('npc.dat', newline='') as f:
                 reader = csv.reader(f)
@@ -35,7 +35,7 @@ class GameMechanics:                                    #Game mechanics class (C
         except Exception as e:
             Log.logger.error("Unable to open npc.dat.", e)
 
-    def get_rooms(self):                                #Get rooms.dat file
+    def get_rooms():                                #Get rooms.dat file
         try: 
             with open('rooms.dat', newline='') as f:
                 reader = csv.reader(f)
@@ -43,7 +43,7 @@ class GameMechanics:                                    #Game mechanics class (C
         except Exception as e:
             Log.Logger.error("Unable to open rooms.dat.", e)
             
-    def get_weapons(self):                              #Get weapons.dat file
+    def get_weapons():                              #Get weapons.dat file
         try:
             with open('weapons.dat', newline='') as f:
                 reader = csv.reader(f)
@@ -60,11 +60,35 @@ class GameMechanics:                                    #Game mechanics class (C
     def do_battle(self):                                #This func will calculate battle stats and apply HP, damage, subtract health, etc.
         print("Do something here")
 
-    def enter_room(self):                               #This func will be used when enterring a room
+    def enter_room(room):                               #This func will be used when enterring a room
         print("Do something here")
 
-    def inspect_item(self, item):                       #This func will inspect item
+    def room_info(room):
+        print("Show room info here")                #This func will show the current room info
+
+    def inspect_item(item):                       #This func will inspect item
         print("Do something here")
+
+    def start_game():                               #This function displays the startup lines, etc.
+        print("Welcome to the Adventures of",Player.get_name(player1))
+        print("A text-based adventure game.")
+        print("")
+        print("")
+        print("")
+        print("You are a peasant. Your name is:", Player.get_name(player1))
+        print("Here are your starting game stats:")
+        print("Health:", player1.get_health())
+        print("Armor:", player1.get_armor())
+        print("Weapon:", player1.get_weapon())
+        print("Skills:", player1.get_skills())
+        print("Location:", player1.get_location())
+        print("Inventory:", player1.get_inventory())
+
+    def show_help():
+        print("Do something here")                  #This func will show the game help
+
+    def show_map():
+        print("Do something here")                  #This func will show the game map
 
 class Player:
     def __init__(self):
@@ -118,6 +142,9 @@ class Player:
 
     def sub_inventory(self, item):
         self.inventory.remove(item)
+
+    def get_inventory(self):
+        return self.inventory
 
     def get_location(self):
         return self.location
@@ -227,18 +254,12 @@ if __name__ == "__main__":
     GameMechanics.cls()
     player1 = Player()
     #Beyond this line still sucks
-    armor = GameMechanics.get_armor()
-    armor = Armor()
-    rooms = GameMechanics.get_rooms()
-    rooms = Room()
-    weapons = GameMechanics.get_weapons()
-    weapons = Weapon()
-    print("Welcome to the Adventures of Lothar.")
-    print("A text-based adventure game.")
-    print("")
-    print("")
-    print("")
-    print("You are a peasant. Your name is:", player1.name)
-    #print(player1.get_name())
+    #armor = GameMechanics.get_armor()
+    #armor = Armor()
+    #rooms = GameMechanics.get_rooms()
+    #rooms = Room()
+    #weapons = GameMechanics.get_weapons()
+    #weapons = Weapon()
+    GameMechanics.start_game()
 
     
