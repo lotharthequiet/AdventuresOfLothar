@@ -14,16 +14,12 @@ class Log:                                              #Logging class
 
 class GameMechanics:                                    #Game mechanics class (Contains all mechanisms for game) 
     version = "0.01a"
-    Armor = []
-    NPC = []
-    Rooms = []
-    Weapons = []
-
+    
     def get_armor():                                #Get armor.dat file
         try:
             with open('armor.dat', newline='') as f:
                 reader = csv.reader(f)
-                GameMechanics.Armor = list(reader)
+                return list(reader)
         except Exception as e:
             Log.Logger.error("Unable to open armor.dat.", e)
     
@@ -31,7 +27,7 @@ class GameMechanics:                                    #Game mechanics class (C
         try:
             with open('npc.dat', newline='') as f:
                 reader = csv.reader(f)
-                GameMechanics.NPC = list(reader)
+                return list(reader)
         except Exception as e:
             Log.logger.error("Unable to open npc.dat.", e)
 
@@ -39,7 +35,7 @@ class GameMechanics:                                    #Game mechanics class (C
         try: 
             with open('rooms.dat', newline='') as f:
                 reader = csv.reader(f)
-                GameMechanics.Rooms = list(reader)
+                return list(reader)
         except Exception as e:
             Log.Logger.error("Unable to open rooms.dat.", e)
             
@@ -47,7 +43,7 @@ class GameMechanics:                                    #Game mechanics class (C
         try:
             with open('weapons.dat', newline='') as f:
                 reader = csv.reader(f)
-                GameMechanics.Weapons = list(reader)
+                return list(reader)
         except Exception as e:
             Log.Logger.error("Unable to open weapons.dat.", e)
 
@@ -55,9 +51,6 @@ class GameMechanics:                                    #Game mechanics class (C
         os.system('cls' if os.name=='nt' else 'clear')
 
     def randomize_npc(self):                            #This func will randomize the QTY and type of NPC in each room
-        print("Do something here")
-
-    def do_battle(self):                                #This func will calculate battle stats and apply HP, damage, subtract health, etc.
         print("Do something here")
 
     def enter_room(room):                               #This func will be used when enterring a room
@@ -89,6 +82,11 @@ class GameMechanics:                                    #Game mechanics class (C
 
     def show_map():
         print("Do something here")                  #This func will show the game map
+
+    Armor = get_armor()
+    NPC = get_npc()
+    Rooms = get_rooms()
+    Weapons = get_weapons()
 
 class Player:
     def __init__(self):
@@ -153,9 +151,9 @@ class Player:
         self.location = location
 
 class Weapon:
-    def __init__(self, name, hp, reqskill, damage):
+    def __init__(self, name, protection, reqskill, damage):
         self.name = name                            #Name of weapon
-        self.hp = hp                                #Hit points delivered from weapon
+        self.protection = protection                                #Hit points delivered from weapon
         self.reqskill = reqskill                    #Required skill level
         self.damage = damage                            #Damage limit of weapon
 
@@ -169,24 +167,24 @@ class Weapon:
         return self.damage
     
     def set_damage(self, damage):
-        self.name = damage
+        self.damage = damage
 
     def get_reqskill(self):
-        return self.level
+        return self.reqskill
     
     def set_reqskill(self, reqskill):
-        self.name = reqskill
+        self.reqskill = reqskill
 
-    def get_hp(self):
-        return self.hp
+    def get_protection(self):
+        return self.protection
 
-    def set_hp(self, hp):
-        self.name = self.hp + hp
+    def set_protection(self, protection):
+        self.protection = protection
 
 class Armor:
-    def __init__(self, name, hp, reqskill, damage):
+    def __init__(self, name, protection, reqskill, damage):
         self.name = name                                #Armor name
-        self.hp = hp                                    #Armor protection
+        self.protection = protection                                    #Armor protection
         self.reqskill = reqskill                        #Required skill level
         self.damage = damage                            #Damage limit of weapon
 
@@ -197,10 +195,10 @@ class Armor:
         self.name = name
 
     def get_protection(self):
-        return self.hp
+        return self.protection
 
-    def set_protection(self, hp):
-        self.hp = hp
+    def set_protection(self, protection):
+        protection.hp = protection
 
     def get_reqskill(self):
         return self.reqskill
@@ -249,6 +247,20 @@ class Room:
     
     def set_info(self, info):
         self.info = info
+
+class Battle:
+    def __init__(self, health, armorprotection, armordamage, hp, weapondamage, npchealth, npcweapon, npcarmor):
+        self.playerhealth = health
+        self.playerarmorprotection = armorprotection
+        self.playerarmordamage = armordamage
+        self.playerweaponhp = hp
+        self.playerweapondamage = weapondamage
+        self.npchealth = npchealth
+        self.npcweapon = npcweapon
+        self.npcarmor = npcarmor
+
+    def do_battle(self):
+        print("DO something here")
 
 if __name__ == "__main__":
     GameMechanics.cls()
