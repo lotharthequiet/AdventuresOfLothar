@@ -2,6 +2,8 @@
 import csv
 import logging
 import os
+import pygame
+pygame.init()
 
 class Log:                                              #Logging class
     Logger = logging.getLogger(__name__)
@@ -29,7 +31,7 @@ class GameMechanics:                                    #Game mechanics class (C
                 reader = csv.reader(f)
                 return list(reader)
         except Exception as e:
-            Log.logger.error("Unable to open npc.dat.", e)
+            Log.Logger.error("Unable to open npc.dat.", e)
 
     def get_rooms():                                #Get rooms.dat file
         try: 
@@ -62,20 +64,22 @@ class GameMechanics:                                    #Game mechanics class (C
     def inspect_item(item):                       #This func will inspect item
         print("Do something here")
 
-    def start_game():                               #This function displays the startup lines, etc.
-        print("Welcome to the Adventures of",Player.get_name(player1))
-        print("A text-based adventure game.")
-        print("")
-        print("")
-        print("")
-        print("You are a peasant. Your name is:", Player.get_name(player1))
-        print("Here are your starting game stats:")
+    def show_stats():                             #This function displays the player stats
+        print(Player.get_name(player1))
+        print("-----------------------------")
         print("Health:", player1.get_health())
         print("Armor:", player1.get_armor())
         print("Weapon:", player1.get_weapon())
         print("Skills:", player1.get_skills())
         print("Location:", player1.get_location())
         print("Inventory:", player1.get_inventory())
+    
+    def show_title():
+        print("The Adventures of",Player.get_name(player1))
+        print("")
+        print("")
+        print("")
+        print("")
 
     def show_help():
         print("Do something here")                  #This func will show the game help
@@ -272,6 +276,9 @@ if __name__ == "__main__":
     #rooms = Room()
     #weapons = GameMechanics.get_weapons()
     #weapons = Weapon()
-    GameMechanics.start_game()
+    GameMechanics.show_title()
+    GameMechanics.show_stats()
+
+    
 
     
