@@ -58,9 +58,6 @@ class GameMechanics:                                    #Game mechanics class (C
     def enter_room(room):                               #This func will be used when enterring a room
         print("Do something here")
 
-    def room_info(room):
-        print("Show room info here")                #This func will show the current room info
-
     def inspect_item(item):                       #This func will inspect item
         print("Do something here")
 
@@ -155,9 +152,9 @@ class Player:
         self.location = location
 
 class Weapon:
-    def __init__(self, name, protection, reqskill, damage):
+    def __init__(self, name, hp, reqskill, damage):
         self.name = name                            #Name of weapon
-        self.protection = protection                                #Hit points delivered from weapon
+        self.hp = hp                                #Hit points delivered from weapon
         self.reqskill = reqskill                    #Required skill level
         self.damage = damage                            #Damage limit of weapon
 
@@ -179,11 +176,11 @@ class Weapon:
     def set_reqskill(self, reqskill):
         self.reqskill = reqskill
 
-    def get_protection(self):
-        return self.protection
+    def get_hp(self):
+        return self.hp
 
-    def set_protection(self, protection):
-        self.protection = protection
+    def set_hp(self, hp):
+        self.hp = hp
 
 class Armor:
     def __init__(self, name, protection, reqskill, damage):
@@ -252,22 +249,56 @@ class Room:
     def set_info(self, info):
         self.info = info
 
+    def show_stats(self):
+        print("Name: ", self.name)
+        print("Greeting: ", self.greeting)
+        print("Item: ", self.item)
+        print("Info: ", self.info)
+
+class NPC:
+    def __init__(self, name, hp, armor):
+        self.name = name
+        self.health = 100
+        self.hp = hp
+        self.armor = armor
+
+    def get_name(self):
+        return self.name
+
+    def get_health(self):
+        return self.health
+
+    def set_heatlh(self, health):
+        self.health = health
+
+    def get_hp(self):
+        return self.hp
+
+    def set_hp(self, hp):
+        self.hp = hp
+
+    def get_armor(self):
+        return self.armor
+
+    def set_armor(self, armor):
+        self.armor = armor
+
 class Battle:
-    def __init__(self, health, armorprotection, armordamage, hp, weapondamage, npchealth, npcweapon, npcarmor):
+    def __init__(self, health, armorprotection, armordamage, hp, weapondamage, npchealth, npchp, npcarmor):
         self.playerhealth = health
         self.playerarmorprotection = armorprotection
         self.playerarmordamage = armordamage
         self.playerweaponhp = hp
         self.playerweapondamage = weapondamage
         self.npchealth = npchealth
-        self.npcweapon = npcweapon
+        self.npchp = npchp
         self.npcarmor = npcarmor
 
     def do_battle(self):
         print("DO something here")
 
 if __name__ == "__main__":
-    GameMechanics.cls()
+    #GameMechanics.cls()
     player1 = Player()
     #Beyond this line still sucks
     #armor = GameMechanics.get_armor()
@@ -278,7 +309,10 @@ if __name__ == "__main__":
     #weapons = Weapon()
     GameMechanics.show_title()
     GameMechanics.show_stats()
-
+    print(GameMechanics.get_armor())
+    print(GameMechanics.get_weapons())
+    print(GameMechanics.get_rooms())
+    print(GameMechanics.get_npc())
     
 
     
